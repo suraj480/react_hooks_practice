@@ -5,6 +5,10 @@ function UseEffect() {
   const [data2, setData2] = useState([]);
   const [counter1, setCounter1] = useState(0);
   const [counter2, setCounter2] = useState(0);
+
+  useEffect(()=>{
+    console.log("any state changed")
+  })
   useEffect(() => {
     console.log("UseEffect called");
     const url = "https://jsonplaceholder.typicode.com/users";
@@ -23,6 +27,7 @@ function UseEffect() {
   };
   const counterTwo = () => {
     console.log("you clicked counter two");
+ 
     setCounter2(counter2 + 1);
   };
   const addUser = () => {
@@ -58,7 +63,7 @@ function UseEffect() {
   return (
     <div className="App">
       {console.log(data)}
-      <button onClick={() => addUser()}>Add user</button>
+      <button style={buttonStyle} onClick={() => addUser()}>Add user</button>
       <div style={{ padding: "10px" }}>
         <button style={{ marginTop: "50px" }} onClick={() => counterOne()}>
           Counter one
@@ -74,5 +79,14 @@ function UseEffect() {
     </div>
   );
 }
+const buttonStyle = {
+  padding: '10px 20px',
+  fontSize: '16px',
+  backgroundColor: 'blue',
+  color: 'white',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+};
 
 export default UseEffect;

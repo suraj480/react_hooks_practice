@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
-
+// useMemo Purpose: To return a memoized value, useful for expensive calculations 
+//that should only be re-computed when dependencies change.
 const Memo = () => {
   const [myNum, setMyNum] = useState(0);
   const [show, setShow] = useState(false);
