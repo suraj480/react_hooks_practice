@@ -41,6 +41,9 @@ Memoization is an optimization feature in react  which, when used in the right p
 # useCallback
 it returns memoized function
 
+# memo
+Memoize whole components.
+
 # UseRef
 
 What is useRef and why it is used?

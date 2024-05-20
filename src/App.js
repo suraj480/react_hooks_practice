@@ -8,6 +8,7 @@ import UseREF from "./UseREF";
 import UseContextPractice from "./UseContextPractice";
 import UseReducerPractice from "./UseReducerPractice";
 import UseMemoPractice from "./UseMemoPractice";
+import UseCallbackPractice from "./UseCallbackPractice";
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,8 @@ function App() {
      {/* useContext was having some error */}
    {/* <UseContextPractice/> */}
    {/* <UseReducerPractice/> */}
-   <UseMemoPractice/>
+   {/* <UseMemoPractice/> */}
+   <UseCallbackPractice/>
     </div>
   );
 }
