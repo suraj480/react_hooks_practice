@@ -49,3 +49,6 @@ Memoize whole components.
 What is useRef and why it is used?
 The useRef Hook allows you to persist values between renders. It can be used to store a mutable value that does not cause a re-render when updated. It can be used to access a DOM element directly.
 
+# Custom hook
+A custom hook in React is a JavaScript function whose name starts with use and that may call other hooks. Custom hooks are a great way to encapsulate and reuse stateful logic between components.
+

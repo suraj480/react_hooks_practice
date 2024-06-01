@@ -8,13 +8,13 @@ const ToDos = ({ todos, addTodo }) => {
       {todos.map((todo, index) => {
         return <p key={index}>{todo + index}</p>;
       })}
-
+      {/* here addTodo is used as useCallback function*/}
       <button onClick={addTodo}>Add Todo</button>
     </>
   );
 };
 
 export default memo(ToDos);
-   
+
 
 

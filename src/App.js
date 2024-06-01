@@ -9,9 +9,16 @@ import UseContextPractice from "./UseContextPractice";
 import UseReducerPractice from "./UseReducerPractice";
 import UseMemoPractice from "./UseMemoPractice";
 import UseCallbackPractice from "./UseCallbackPractice";
+import { UseRefPractice } from "./UseRefPractice";
+import useFetch from "./useFetch";
 function App() {
+  const { data, loading, error } = useFetch('https://api.example.com/data');
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <div className="App">
+        <pre>{JSON.stringify(data, null, 2)}</pre>
       {/* <UseEffect /> */}
       {/* <Memo/> */}
      {/* <CallBack/> */}
@@ -19,8 +26,9 @@ function App() {
      {/* useContext was having some error */}
    {/* <UseContextPractice/> */}
    {/* <UseReducerPractice/> */}
-   {/* <UseMemoPractice/> */}
-   <UseCallbackPractice/>
+   <UseMemoPractice/>
+   {/* <UseCallbackPractice/> */}
+   {/* <UseRefPractice/> */}
     </div>
   );
 }
