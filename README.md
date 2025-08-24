@@ -38,6 +38,45 @@ It is used to increase the performance of our react application
 
 Memoization is an optimization feature in react  which, when used in the right place, incereased the performance of the program
 
+import React, { useState, useMemo } from "react";
+
+const Memo = () => {
+  const [myNum, setMyNum] = useState(0);
+  const [show, setShow] = useState(false);
+
+  const getValue = () => {
+    setMyNum(myNum + 1);
+  };
+
+  const countNumber = (num) => {
+    console.log("Expensive function is running with value:", num);
+    // Simulating an expensive calculation
+    for (let i = 0; i <= 1000000000; i++) {}
+    return num;
+  };
+
+  // Memoized value
+  const checkData = useMemo(() => {
+    return countNumber(myNum);
+  }, [myNum]);
+
+  return (
+    <>
+      <button onClick={getValue} style={{ backgroundColor: "red" }}>
+        Counter
+      </button>
+      <p> My new number : {checkData} </p>
+
+      <button onClick={() => setShow(!show)}>
+        {show ? "You clicked me" : "Click me plz"}
+      </button>
+    </>
+  );
+};
+
+export default Memo;
+
+
 # useCallback
 it returns memoized function
 
