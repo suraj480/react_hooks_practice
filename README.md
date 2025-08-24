@@ -365,3 +365,148 @@ function App() {
     </div>
   );
 }
+
+```
+# Debounce vs Throttle in ReactJS
+
+Both **debounce** and **throttle** are techniques to control how frequently a function is executed, which helps in **performance optimization** when dealing with high-frequency events like `scroll`, `resize`, or `input`.
+
+---
+
+## 🔹 Debounce
+
+**Definition:**  
+Debounce ensures that a function is executed **only after a certain delay has passed** since the last time it was called.  
+👉 Useful when you want to wait until the user stops doing something.
+
+**Use Cases:**
+- Search input (delay API calls until user stops typing)
+- Form validations
+- Auto-save after typing
+
+### Example: Debounce Hook + Search Input
+
+```tsx
+import React, { useState, useEffect } from "react";
+
+function useDebounce(value: string, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+export default function SearchInput() {
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 500);
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      console.log("🔍 Fetching data for:", debouncedQuery);
+      // Call API here
+    }
+  }, [debouncedQuery]);
+
+  return (
+    <input
+      type="text"
+      placeholder="Search..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      className="border p-2 rounded"
+    />
+  );
+}
+```
+# Throttle in ReactJS
+
+## 🔹 What is Throttling?
+
+**Throttle** ensures that a function is executed **at most once in a given time interval**, even if it’s triggered multiple times during that interval.  
+
+👉 In simple words:  
+- If you call a function many times quickly, **throttle will only let it run once every X milliseconds**.
+
+---
+
+## 🔹 Why Use Throttle?
+
+High-frequency events (like `scroll`, `resize`, `mousemove`, `drag`) can fire **hundreds of times per second**, causing performance issues.  
+By throttling, we **limit execution frequency**, keeping the UI smooth.
+
+---
+
+## 🔹 Common Use Cases
+
+- Tracking **scroll position**
+- Implementing **infinite scroll**
+- **Window resize** listener
+- **Drag-and-drop** movement
+- Button clicks that should not be spammed
+
+---
+
+## 🔹 Implementing Throttle Function
+
+```tsx
+function throttle(func: Function, delay: number) {
+  let lastCall = 0;
+  return (...args: any[]) => {
+    const now = new Date().getTime();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func(...args);
+    }
+  };
+}
+```
+# Debounce vs Throttle – Quick Revision
+
+## 🔹 Debounce
+
+- Executes a function **only after a delay** once the user stops triggering it.  
+- Resets the timer if the event is triggered again within the delay.  
+- 👉 Best for **user input actions** (search, form validation, auto-save).  
+
+**Example Use Case:**  
+Typing in a search bar – API is called **after user stops typing**.
+
+---
+
+## 🔹 Throttle
+
+- Executes a function **at most once in a fixed interval**, no matter how many times it’s triggered.  
+- Ensures execution at **regular intervals**.  
+- 👉 Best for **continuous actions** (scroll, resize, drag, infinite scroll).  
+
+**Example Use Case:**  
+Tracking window scroll – handler runs **once every 500ms** instead of every pixel.
+
+---
+
+## 🔑 Side-by-Side Comparison
+
+| Feature        | Debounce 🕒 | Throttle ⏱️ |
+|----------------|-------------|-------------|
+| Execution      | After user stops for X ms | At most once in X ms |
+| Use Case       | Search input, auto-save, form validation | Scroll, resize, drag, infinite scroll |
+| Behavior       | Waits for pause, then executes | Executes periodically while action continues |
+| Example        | API call after typing | Update scroll position every 500ms |
+
+---
+
+## ✅ Quick Rule of Thumb
+
+- Use **Debounce** when you want to **wait until user finishes typing/doing something**.  
+- Use **Throttle** when you want to **limit execution rate during continuous actions**.  
+
+🚀 Knowing when to use Debounce vs Throttle makes your React apps faster & smoother!
