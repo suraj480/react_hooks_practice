@@ -129,15 +129,52 @@ const CallBack = () => {
 
 export default CallBack;
 
-
+```
 # memo
 Memoize whole components.
 
 # UseRef
-
+```
 What is useRef and why it is used?
 The useRef Hook allows you to persist values between renders. It can be used to store a mutable value that does not cause a re-render when updated. It can be used to access a DOM element directly.
+```
+### Avoiding Unnecessary Renders with `useRef`
 
+In React, we often use **state** to store values that persist across renders. However, updating state always triggers a re-render of the component.  
+Sometimes, this can cause **unnecessary re-renders** and impact performance.
+
+That’s where **refs** come in.
+
+- A **ref** is very similar to state in that it persists between renders.
+- The key difference is that **changing a ref does not trigger a re-render** of your component.
+- This makes `useRef` useful when you want to store values or references without causing re-renders.
+
+✅ Instead of using `useState` when you only need to keep track of a value (but don’t need a re-render), you can use 
+`useRef`.
+```
+## But biggest use case of useRef is that people going to use ref for is too reference elements inside of your HTML and this is actually so popular that each element 
+inside of your document has a ref attribute and you can set that to any ref you want 
+```
+```jsx
+import { useRef } from 'react';
+
+export default function UseREF() {
+  let ref = useRef(0);
+
+  function handleClick() {
+    ref.current = ref.current + 1;
+    alert('You clicked ' + ref.current + ' times!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me!
+    </button>
+  );
+}
+
+
+```
 # Custom hook
 A custom hook in React is a JavaScript function whose name starts with use and that may call other hooks. Custom hooks are a great way to encapsulate and reuse stateful logic between components.
 
