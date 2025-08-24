@@ -215,3 +215,56 @@ React uses the **Virtual DOM** to improve performance and optimize UI updates.
 - **Virtual DOM** → Optimized, **fast**, and helps React efficiently update only what has changed.  
 
 ⚡ This is one of the main reasons why React applications perform better for dynamic and interactive UIs.  
+
+
+# 📦 Yarn vs npm  
+
+Both **npm** (Node Package Manager) and **Yarn** are package managers for JavaScript.  
+They help developers install, manage, and update libraries or dependencies in a project.  
+
+---
+
+## 🔹 npm (Node Package Manager)  
+- Default package manager that comes with **Node.js**.  
+- Installs packages from the **npm registry**.  
+- Uses `package.json` to track dependencies.  
+
+---
+
+## 🔹 Yarn  
+- Developed by **Facebook** in 2016.  
+- Created as an alternative to npm with improvements in **speed, security, and reliability**.  
+- Also uses the **npm registry**, but manages dependencies differently.  
+
+---
+
+## 🔎 Key Differences  
+
+| Feature   | npm | Yarn |
+|-----------|-----|------|
+| **Speed** | Slower (installs sequentially in older versions). | Faster (installs packages in parallel). |
+| **Lock File** | Uses `package-lock.json` to lock versions. | Uses `yarn.lock` to lock versions (deterministic installs). |
+| **Offline Support** | Limited offline caching. | Strong offline support (installs from cache if available). |
+| **Security** | Runs security audits with `npm audit`. | Also provides integrity checks, but relies on npm registry security. |
+| **Commands** | `npm install <pkg>` | `yarn add <pkg>` |
+| **Default with Node.js** | ✅ Yes, comes pre-installed with Node.js. | ❌ No, must be installed separately. |
+| **Performance (modern versions)** | npm v7+ improved performance a lot. | Still considered slightly faster for large projects. |
+
+---
+
+## 🔑 Example Commands  
+
+|            Task          |      npm      | Yarn |
+|--------------------------|---------------|------|
+| Install all dependencies | `npm install` | `yarn install` |
+| Add a package | `npm install axios` | `yarn add axios` |
+| Remove a package | `npm uninstall axios` | `yarn remove axios` |
+| Install dev dependency | `npm install jest --save-dev` | `yarn add jest --dev` |
+| Update a package | `npm update axios` | `yarn upgrade axios` |
+
+---
+
+## ✅ Summary  
+- Both **npm** and **Yarn** do the same job: managing dependencies.  
+- **Yarn** was originally faster and more reliable, but modern **npm (v7+) has caught up**.  
+- Choosing between them often depends on **team preference** and **existing project setup**.  
