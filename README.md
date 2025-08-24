@@ -37,7 +37,7 @@ it returns memoized value
 It is used to increase the performance of our react application
 
 Memoization is an optimization feature in react  which, when used in the right place, incereased the performance of the program
-
+```jsx
 import React, { useState, useMemo } from "react";
 
 const Memo = () => {
