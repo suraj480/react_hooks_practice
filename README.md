@@ -268,3 +268,85 @@ They help developers install, manage, and update libraries or dependencies in a 
 - Both **npm** and **Yarn** do the same job: managing dependencies.  
 - **Yarn** was originally faster and more reliable, but modern **npm (v7+) has caught up**.  
 - Choosing between them often depends on **team preference** and **existing project setup**.  
+
+
+# ⚛️ Why is React called React?
+
+React is a JavaScript library developed by **Facebook** (now Meta) in 2013 for building user interfaces.  
+
+The name **"React"** was chosen because:  
+
+1. **Reactive Updates**  
+   - React automatically *reacts* to changes in data or state.  
+   - When the state of a component changes, React efficiently updates (re-renders) only the affected parts of the UI.  
+   - This reactive nature makes UI updates smooth and fast.  
+
+2. **Reactive Programming Principles**  
+   - Inspired by reactive programming concepts where changes in one part of a system automatically propagate to other parts.  
+   - React embraces this idea by re-rendering UI whenever its state or props change.  
+
+3. **User Reactions**  
+   - The library is focused on building **interactive** UIs that respond to user *reactions* (clicks, inputs, etc.) in real time.  
+
+---
+
+## ✅ In Simple Terms
+React is called **React** because it is all about:
+- **Reacting to data changes** (state, props).  
+- **Reacting to user interactions** (events like clicks, typing, etc.).  
+- **Reactively updating the UI** without reloading the whole page.  
+
+---
+
+# 🔄 Reconciliation in React
+
+## What is Reconciliation?
+Reconciliation is the **process React uses to update the DOM** when a component’s state or props change.  
+
+React maintains a **Virtual DOM** (a lightweight copy of the Real DOM).  
+When changes happen:
+1. React updates the Virtual DOM first.
+2. It then compares the new Virtual DOM with the previous one using a **diffing algorithm**.
+3. Only the parts of the Real DOM that actually changed are updated.
+
+This makes UI updates **fast and efficient**.
+
+---
+
+## ⚙️ How Reconciliation Works
+1. **Render Phase**  
+   - React calls the component’s `render()` function (or returns JSX).  
+   - A new Virtual DOM tree is created.  
+
+2. **Diffing Algorithm**  
+   - React compares the new Virtual DOM with the old one (tree comparison).  
+   - Uses heuristics:
+     - Elements of different types → Replace entire subtree.
+     - Elements of the same type → Update attributes and recurse deeper.
+     - Lists → Uses `key` prop to identify items efficiently.
+
+3. **Commit Phase**  
+   - React applies the minimal changes to the Real DOM.  
+
+---
+
+## 🚀 Why Reconciliation is Important?
+- **Performance Optimization** – avoids re-rendering the whole DOM.  
+- **Smooth UI Updates** – updates only the necessary nodes.  
+- **Scalability** – works efficiently even in large applications.  
+
+---
+
+## 📌 Example
+
+```jsx
+function App() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
