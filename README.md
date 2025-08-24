@@ -41,6 +41,56 @@ Memoization is an optimization feature in react  which, when used in the right p
 # useCallback
 it returns memoized function
 
+# 📌 useCallback Example in React
+
+This example demonstrates how to use **`useCallback`** to memoize a function so that it does not get recreated on every render.  
+It is especially useful when passing functions as props to child components that rely on reference equality (`React.memo`).
+
+---
+
+## 🔹 Code Example
+
+```jsx
+import { useCallback, useState } from "react";
+import Todos from "./ToDos";
+
+// Purpose: To return a memoized callback, useful for passing stable functions
+// to components that rely on reference equality to prevent unnecessary renders.
+
+const CallBack = () => {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState([]);
+
+  // Normal function (recreated on every render)
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  // Memoized function using useCallback
+  const addTodo = useCallback(() => {
+    setTodos((prev) => [...prev, "new Entry"]);
+  }, [todos]);
+
+  // Without useCallback (causes re-renders of child if not memoized)
+  // const addTodo = () => {
+  //   setTodos((prev) => [...prev, "new Entry"]);
+  // };
+
+  return (
+    <>
+      <Todos todos={todos} addTodo={addTodo} />
+      <hr />
+      <div>
+        Count: {count}
+        <button onClick={increment}>+</button>
+      </div>
+    </>
+  );
+};
+
+export default CallBack;
+
+
 # memo
 Memoize whole components.
 
