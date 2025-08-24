@@ -172,6 +172,21 @@ export default function UseREF() {
     </button>
   );
 }
+```
+# 🎯 useContext in React
+
+## 📌 What is useContext?
+`useContext` is a React Hook that allows you to access values from **React Context** directly, **without passing props manually** through every level of the component tree.  
+
+It is mainly used for:
+- Sharing **global state** (e.g., theme, authentication, language).  
+- Avoiding **"prop drilling"** (passing props down multiple components).  
+
+---
+
+## ⚙️ Syntax
+```jsx
+const value = useContext(MyContext);
 
 
 ```
