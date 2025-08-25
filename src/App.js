@@ -11,24 +11,16 @@ import UseMemoPractice from "./UseMemoPractice";
 import UseCallbackPractice from "./UseCallbackPractice";
 import { UseRefPractice } from "./UseRefPractice";
 import useFetch from "./useFetch";
+import NameDown from "./NameDown";
+import SearchInput from "./useDebounce";
 function App() {
-  const { data, loading, error } = useFetch('https://api.example.com/data');
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
   return (
     <div className="App">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      {/* <UseEffect /> */}
+      {/* <NameDown /> */}
+      {/* <CallBack /> */}
       {/* <Memo/> */}
-     {/* <CallBack/> */}
-     {/* <UseREF/> */}
-     {/* useContext was having some error */}
-   {/* <UseContextPractice/> */}
-   {/* <UseReducerPractice/> */}
-   <UseMemoPractice/>
-   {/* <UseCallbackPractice/> */}
-   {/* <UseRefPractice/> */}
+      {/* <UseREF/> */}
+      <SearchInput />
     </div>
   );
 }
