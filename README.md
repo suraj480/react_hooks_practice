@@ -510,3 +510,70 @@ Tracking window scroll – handler runs **once every 500ms** instead of every pi
 - Use **Throttle** when you want to **limit execution rate during continuous actions**.  
 
 🚀 Knowing when to use Debounce vs Throttle makes your React apps faster & smoother!
+
+```jsx
+//call api and show in table
+import React, { useEffect, useState } from "react";
+
+export default function PostTable() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // 🔹 Fetch API data
+  const fetchPosts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const data = await res.json();
+      setPosts(data.slice(0, 10)); // show only first 10 posts
+    } catch (err) {
+      console.error("Error fetching posts:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 🔹 Load data on component mount
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">📋 Posts Table</h2>
+
+      {loading && <p>Loading...</p>}
+
+      {!loading && posts.length > 0 && (
+        <table className="w-full border-collapse border border-gray-300">
+          <thead className="bg-gray-200">
+            <tr>
+              <th className="border border-gray-300 px-3 py-2">ID</th>
+              <th className="border border-gray-300 px-3 py-2">Title</th>
+              <th className="border border-gray-300 px-3 py-2">Body</th>
+            </tr>
+          </thead>
+          <tbody>
+            {posts.map((post) => (
+              <tr key={post.id} className="hover:bg-gray-100">
+                <td className="border border-gray-300 px-3 py-2">{post.id}</td>
+                <td className="border border-gray-300 px-3 py-2">{post.title}</td>
+                <td className="border border-gray-300 px-3 py-2">{post.body}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {!loading && posts.length === 0 && <p>No data available</p>}
+
+      {/* Optional: Reload button */}
+      <button
+        onClick={fetchPosts}
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      >
+        Reload Data
+      </button>
+    </div>
+  );
+}

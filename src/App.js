@@ -13,6 +13,7 @@ import { UseRefPractice } from "./UseRefPractice";
 import useFetch from "./useFetch";
 import NameDown from "./NameDown";
 import SearchInput from "./useDebounce";
+import ScrollTracker from "./throttle";
 function App() {
   return (
     <div className="App">
@@ -20,7 +21,8 @@ function App() {
       {/* <CallBack /> */}
       {/* <Memo/> */}
       {/* <UseREF/> */}
-      <SearchInput />
+      {/* <SearchInput /> */}
+      <ScrollTracker />
     </div>
   );
 }

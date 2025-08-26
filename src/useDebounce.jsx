@@ -20,7 +20,8 @@ export default function SearchInput() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const debouncedQuery = useDebounce(query, 500); // wait 500ms
-
+console.log("Current query:", query);
+console.log("Debounced query:", debouncedQuery);
   useEffect(() => {
     if (debouncedQuery) {
       console.log("🔍 Fetching data for:", debouncedQuery);

@@ -20,6 +20,10 @@ const Memo = () => {
     return countNumber(myNum);
   }, [myNum]);
 
+//useEffect cant provide same functionality becoz in this every time new object is created
+// so it will re render every time but useMemo will store the value and only change when
+// dependency changes
+
   return (
     <>
       <button onClick={getValue} style={{ backgroundColor: "red" }}>
